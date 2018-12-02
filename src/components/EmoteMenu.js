@@ -15,11 +15,11 @@ class EmoteMenu extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener("mousedown", this.handleMouseClick);
+    document.addEventListener("mouseup", this.handleMouseClick);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleMouseClick);
+    document.removeEventListener("mouseup", this.handleMouseClick);
   }
 
   handleMouseClick(e) {
