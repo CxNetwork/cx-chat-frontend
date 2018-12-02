@@ -10,6 +10,10 @@ class Chat extends Component {
     emoteMenuVisible: false
   }
 
+  setEmoteMenuVisible(visible) {
+    this.setState({ emoteMenuVisible: visible });
+  }
+
   render() {
     return (
       <Fragment>
@@ -18,12 +22,15 @@ class Chat extends Component {
         {/* Chat Area */}    
         <div>
           <MessageList/>
-          {this.state.emoteMenuVisible ? <EmoteMenu/> : null}
+          {this.state.emoteMenuVisible ?
+            <EmoteMenu onClose={() => this.setEmoteMenuVisible(false)}/> :
+            null
+          }
         </div>
 
         <Footer
           emoteMenuVisible={this.state.emoteMenuVisible}
-          onEmoteMenuToggle={() => this.setState({ emoteMenuVisible: !this.state.emoteMenuVisible })}
+          onEmoteMenuToggle={() => this.setEmoteMenuVisible(!this.state.emoteMenuVisible) }
         />
       </Fragment>
     );

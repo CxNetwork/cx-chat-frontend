@@ -8,17 +8,37 @@ class EmoteMenu extends Component {
     filterText: ""
   }
 
+  constructor() {
+    super();
+
+    this.handleMouseClick = this.handleMouseClick.bind(this);
+  }
+
   componentDidMount() {
-//    this.filterInput.focus();
+    document.addEventListener("mousedown", this.handleMouseClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleMouseClick);
+  }
+
+  handleMouseClick(e) {
+    if (!this.rootRef) return;
+    
+    if (!this.rootRef.contains(e.target)) {
+      setImmediate(this.props.onClose);
+    }
   }
 
   render() {
     return (
-      <div className="emoteMenuRoot">
-        {/*<h1>Hi</h1>
-        <input ref={(el) => this.filterInput = el}></input>*/}
-        <Picker set="twitter" />
-      </div>
+      <span ref={el => this.rootRef = el }>
+        <div className="emoteMenuRoot">
+          {/*<h1>Hi</h1>
+          <input ref={(el) => this.filterInput = el}></input>*/}
+          <Picker set="twitter" />
+        </div>
+      </span>
     );
   }
 };
