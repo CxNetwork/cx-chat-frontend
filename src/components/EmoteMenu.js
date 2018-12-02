@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "../cxemote.css";
 
 class EmoteMenu extends Component {
   state = {

@@ -1,15 +1,62 @@
-import React, { Component } from 'react';
-import './cxd.css';
+import React, { Component } from "react";
 
-import Header from "./components/Header";
+import "./chat.css";
 import Footer from "./components/Footer";
+import ChatList from "./components/ChatList";
+import cxLogo from "./assets/cxlogo.svg";
+import launchIcon from "./assets/baseline-launch-24px.svg";
+
+const usernames = [
+  "Magnaboy",
+  "Phineas",
+  "Ciaran",
+  "Segfault",
+  "Coggins",
+  "Ice_Poseidon"
+];
 
 class App extends Component {
+  state = {
+    showEmoteMenu: false,
+    messages: []
+  };
+
+  componentDidMount() {
+    setInterval(this.addRandomChatMessage, 500);
+  }
+
+  emoteMenuToggle = () => {
+    this.setState({ showEmoteMenu: !this.state.showEmoteMenu });
+  };
+
+  addRandomChatMessage = () => {
+    const message = {
+      username: usernames[Math.floor(Math.random() * usernames.length)],
+      content: Math.floor(Math.random() * 1000)
+    };
+    this.setState({ messages: [...this.state.messages, message] });
+  };
+
   render() {
     return (
-      <div className="cxChat">
-        <Header/>
-        <Footer/>
+      <div className="flex-container">
+        <div className="header">
+          <img style={{ width: 25, marginLeft: 15 }} src={cxLogo} />
+          <p className="streamerHeaderName">Ice Poseidon</p>
+          <img
+            style={{ marginLeft: "auto", marginRight: 15 }}
+            src={launchIcon}
+          />
+        </div>
+
+        <div style={{ padding: 20 }}>
+          <ChatList messages={this.state.messages} />
+        </div>
+
+        <Footer
+          emoteMenuToggle={this.emoteMenuToggle}
+          emotesVisible={this.state.showEmoteMenu}
+        />
       </div>
     );
   }
