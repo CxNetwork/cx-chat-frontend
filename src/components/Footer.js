@@ -15,32 +15,23 @@ class Footer extends Component {
     inputText: "",
   }
 
-  constructor() {
-    super();
-
-    this.toggleEmotes = this.toggleEmotes.bind(this);
-  }
-
   componentDidMount() {
     this.chatInput.focus();
   }
-  
-  toggleEmotes() {
-    // focus chat input when coming back from emote menu
-    if (this.props.emoteMenuVisible) {
+
+  componentDidUpdate() {
+    if (!this.props.emoteMenuVisible) {
       this.chatInput.focus();
     }
-
-    this.props.onEmoteMenuToggle();
   }
-
+  
   render() {
     return (
       <Fragment>
         <div className="footer">
           <div className="chatBar">
             <input className="chatBarInput" ref={(el) => this.chatInput = el} placeholder="Send a message..."/>
-            <button className="iconButton emoteButton" onClick={this.toggleEmotes}>
+            <button className="iconButton emoteButton" onClick={this.props.onEmoteMenuToggle}>
               <EmoteIcon color={this.props.emoteMenuVisible ? '#FFFFFF' : '#707070'}/>
             </button>
           </div>
