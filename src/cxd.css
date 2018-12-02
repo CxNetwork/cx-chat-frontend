@@ -12,7 +12,7 @@
   height: 35px;
   width: 100%;
   top: 0;
-  position: fixed;
+  /*position: fixed;*/
   display: flex;
   align-items: center;
   background-color: #181818;

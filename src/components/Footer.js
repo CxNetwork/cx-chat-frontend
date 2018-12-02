@@ -13,7 +13,6 @@ import adminBadge from "../assets/baseline-build-24px.svg";
 class Footer extends Component {
   state = {
     inputText: "",
-    emotesVisible: false
   }
 
   constructor() {
@@ -27,13 +26,12 @@ class Footer extends Component {
   }
   
   toggleEmotes() {
-    const visible = !this.state.emotesVisible;
-    this.setState({ emotesVisible: visible });
-  
     // focus chat input when coming back from emote menu
-    if (!visible) {
+    if (this.props.emoteMenuVisible) {
       this.chatInput.focus();
     }
+
+    this.props.onEmoteMenuToggle();
   }
 
   render() {
@@ -43,7 +41,7 @@ class Footer extends Component {
           <div className="chatBar">
             <input className="chatBarInput" ref={(el) => this.chatInput = el} placeholder="Send a message..."/>
             <button className="iconButton emoteButton" onClick={this.toggleEmotes}>
-              <EmoteIcon color={this.state.emotesVisible ? '#FFFFFF' : '#707070'}/>
+              <EmoteIcon color={this.props.emoteMenuVisible ? '#FFFFFF' : '#707070'}/>
             </button>
           </div>
           <div className="chatExperience">
@@ -57,7 +55,6 @@ class Footer extends Component {
             </div>
           </div>
         </div>
-        {this.state.emotesVisible ? <EmoteMenu/> : null}
       </Fragment>
     );
   }

@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import './cxd.css';
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Chat from "./components/Chat";
 
 class App extends Component {
   render() {
     return (
       <div className="cxChat">
-        <Header/>
-        <Footer/>
+        <Chat />
       </div>
     );
   }

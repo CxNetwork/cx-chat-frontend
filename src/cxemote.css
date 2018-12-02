@@ -1,7 +1,8 @@
 .emoteMenuRoot {
   position: absolute;
-  top: 50px;
-  left: 50px;
+  top: 0px;
+  left: 0px;
   max-width: 400px;
   max-height: 600px;
+  overflow: hidden;
 }
