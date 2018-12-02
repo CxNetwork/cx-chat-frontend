@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import { Picker } from 'emoji-mart';
+import { NimblePicker } from 'emoji-mart';
 import "emoji-mart/css/emoji-mart.css";
+import twitterData from "emoji-mart/data/twitter.json";
 import "../cxemote.css";
 
 class EmoteMenu extends Component {
   state = {
     filterText: ""
-  }
-
-  constructor() {
-    super();
-
-    this.handleMouseClick = this.handleMouseClick.bind(this);
   }
 
   componentDidMount() {
@@ -22,7 +17,7 @@ class EmoteMenu extends Component {
     document.removeEventListener("mouseup", this.handleMouseClick);
   }
 
-  handleMouseClick(e) {
+  handleMouseClick = e => {
     if (!this.rootRef) return;
     
     if (!this.rootRef.contains(e.target)) {
@@ -36,7 +31,7 @@ class EmoteMenu extends Component {
         <div className="emoteMenuRoot">
           {/*<h1>Hi</h1>
           <input ref={(el) => this.filterInput = el}></input>*/}
-          <Picker set="twitter" />
+          <NimblePicker set="twitter" data={twitterData} title="Its just a monkey" emoji="monkey" />
         </div>
       </span>
     );
