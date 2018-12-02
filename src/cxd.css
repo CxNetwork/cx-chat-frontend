@@ -77,8 +77,7 @@
 
 .emoteButton {
   margin: auto 0;
-  width: 24px;
-  height: 24px;
+  height: 48px;
   padding: 9px;
 }
 
@@ -97,4 +96,9 @@
 .chatUserDisplay {
   display: flex;
   margin-left: auto;
+}
+
+.iconButton {
+  background: none;
+  border: none;
 }
