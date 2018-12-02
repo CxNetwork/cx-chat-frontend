@@ -18,7 +18,8 @@ const usernames = [
 class App extends Component {
   state = {
     showEmoteMenu: false,
-    messages: []
+    messages: [],
+    maxMessages: 10,
   };
 
   componentDidMount() {
@@ -34,7 +35,16 @@ class App extends Component {
       username: usernames[Math.floor(Math.random() * usernames.length)],
       content: Math.floor(Math.random() * 1000)
     };
-    this.setState({ messages: [...this.state.messages, message] });
+
+    let currMessages = this.state.messages;
+
+    if (this.state.messages.length > this.state.maxMessages) {
+      currMessages.shift();
+    }
+
+    currMessages = [...currMessages, message]
+
+    this.setState({ messages: currMessages });
   };
 
   render() {
