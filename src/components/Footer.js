@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import '../cxd.css';
 import settingsIcon from "../assets/baseline-settings-20px.svg";
 import peopleIcon from "../assets/baseline-people-24px.svg";
+import emoteIcon from "../assets/baseline-tag_faces-24px.svg";
 
 //temp
 import adminBadge from "../assets/baseline-build-24px.svg";
@@ -16,6 +17,7 @@ class Footer extends Component {
       <div className="footer">
         <div className="chatBar">
           <input className="chatBarInput" placeholder="Send a message..."/>
+          <img className="emoteButton" src={emoteIcon}/>
         </div>
         <div className="chatExperience">
           <div className="optionButtons">

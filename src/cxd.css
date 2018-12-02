@@ -30,7 +30,7 @@
   position: fixed;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   bottom: 0;
   background-color: #181818;
@@ -39,6 +39,7 @@
 }
 
 .chatBar {
+  display: flex;
   width: 90%;
   height: 45px;
   border-radius: 4px;
@@ -72,6 +73,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.emoteButton {
+  margin: auto 0;
+  width: 24px;
+  height: 24px;
+  padding: 9px;
 }
 
 .optionButtons {
