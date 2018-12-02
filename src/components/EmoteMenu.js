@@ -6,10 +6,15 @@ class EmoteMenu extends Component {
     filterText: ""
   }
 
+  componentDidMount() {
+    this.filterInput.focus();
+  }
+
   render() {
     return (
       <div className="emoteMenuRoot">
         <h1>Hi</h1>
+        <input ref={(el) => this.filterInput = el}></input>
       </div>
     );
   }
