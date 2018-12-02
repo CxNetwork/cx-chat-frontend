@@ -1,7 +1,3 @@
-.chat-container {
-  color: white;
-}
-
 *:focus {
   outline: none;
 }
@@ -112,24 +108,6 @@
   align-items: center;
 }
 
-.flex-item:nth-child(1) {
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
-}
-
-.flex-item:nth-child(2) {
-  order: 0;
-  flex: 1 1 auto;
-  align-self: auto;
-}
-
-.flex-item:nth-child(3) {
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
-}
-
 /* The container for the Chat Message items */
 .chat-flex-container {
   width: 90vw;
@@ -143,5 +121,3 @@
   align-items: stretch;
   font-family: ;
 }
-
-/* */
