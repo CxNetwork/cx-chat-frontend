@@ -5,8 +5,6 @@ import settingsIcon from "../assets/baseline-settings-20px.svg";
 import peopleIcon from "../assets/baseline-people-24px.svg";
 import EmoteIcon from "../assets/EmoteIcon";
 
-import EmoteMenu from "./EmoteMenu";
-
 //temp
 import adminBadge from "../assets/baseline-build-24px.svg";
 
