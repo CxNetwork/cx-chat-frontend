@@ -110,9 +110,9 @@
 
 /* The container for the Chat Message items */
 .chat-flex-container {
-  width: 90vw;
-  padding: 20px;
-  height: 500px;
+  width: 100vw;
+  margin-left: 28px;
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -120,4 +120,8 @@
   align-content: flex-start;
   align-items: stretch;
   font-family: ;
+}
+
+.chat-list-item {
+  padding-bottom: 10px;
 }

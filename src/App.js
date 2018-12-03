@@ -12,8 +12,23 @@ const usernames = [
   "Ciaran",
   "Segfault",
   "Coggins",
-  "Ice_Poseidon"
+  "Ice_Poseidon",
+  "TTD_FAGGOT_420"
 ];
+
+const colors = [
+  "#fff3aa",
+  "#ffd0a8",
+  "#ffb1b1",
+  "#d9d1ff",
+  "#b7efff",
+]
+
+function generateColorFromString(str) {
+  let sum = 0;
+  for (let x = 0; x < str.length; x++) sum += x * str.charCodeAt(x);
+  return colors[sum%colors.length];
+}
 
 class App extends Component {
   state = {
@@ -31,10 +46,18 @@ class App extends Component {
   };
 
   addRandomChatMessage = () => {
+    const username = usernames[Math.floor(Math.random() * usernames.length)];
+
     const message = {
-      username: usernames[Math.floor(Math.random() * usernames.length)],
+      username: username,
+      color: generateColorFromString(username),
       content: Math.floor(Math.random() * 1000)
     };
+
+    if (username.toLowerCase().indexOf("ttd") !== -1) {
+      message.color = "#7b5804";
+      message.username = "💩" + message.username;
+    }
 
     let currMessages = this.state.messages;
 
@@ -59,7 +82,7 @@ class App extends Component {
           />
         </div>
 
-        <div style={{ padding: 20 }}>
+        <div>
           <ChatList messages={this.state.messages} />
         </div>
 
