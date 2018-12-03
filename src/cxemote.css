@@ -20,6 +20,7 @@
 .emoji-mart-search input {
   background: #181818;
   border: 1px solid #181818;
+  color: #d2d2d2;
 }
 
 .emoji-mart-category .emoji-mart-emoji:hover:before {
