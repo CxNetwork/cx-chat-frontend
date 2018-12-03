@@ -30,11 +30,25 @@ function generateColorFromString(str) {
   return colors[sum%colors.length];
 }
 
+const emotes = {
+  "TriHard": { img: "" },
+  "Kappa": { img: "" },
+  "PogChamp": { img: "" },
+  "POGGERS": { img: "" },
+};
+const emoteNames = Object.keys(emotes);
+
+const modifiers = {
+  "stab": {},
+};
+const modifierNames = Object.keys(modifiers);
+
 class Chat extends Component {
   state = {
     emoteMenuVisible: false,
     messages: [],
-    maxMessages: 10,
+    maxMessages: 100,
+    sampleWords: [],
   }
 
   setEmoteMenuVisible(visible) {
@@ -42,21 +56,82 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    setInterval(this.addRandomChatMessage, 500);
+    fetch('https://baconipsum.com/api/?type=meat-and-filler').then(res => {
+      res.json().then((data) => {
+        const split = data.map(x => x.split(/ /g)).reduce((a, b) => [...a, b]);
+        this.setState({ sampleWords: split });
+        console.log(split);
+        setInterval(this.addRandomChatMessage, 500);
+      })
+    })
   }
   
+  tokenize(text) {
+    const words = text.split(/ /g);
+    const tokens = [];
+
+    let currentText = "";
+
+    const purgeTextBuffer = () => {
+      if (currentText.length === 0) return;
+      
+      // Save current text onto token list and clear buffer
+      tokens.push({ type: "TEXT", value: currentText.trim() });
+      currentText = "";
+    }
+
+    for (const word of words) {
+      const wordLen = word.length;
+      const sepIndex = word.indexOf(':');
+      
+      let emote = word;
+      let modifiers = "";
+      if (sepIndex > -1 && sepIndex < wordLen-1) {
+        emote = word.substr(0, sepIndex);
+        modifiers = word.substr(sepIndex+1);
+      }
+
+      if (emoteNames.indexOf(emote) > -1) {
+        purgeTextBuffer();
+
+        const validModifiers = modifiers.split(':').filter(x => modifierNames.indexOf(x) > -1);
+
+        // Put emote onto token list
+        tokens.push({ type: "EMOTE", name: emote, modifiers: validModifiers });
+      } else {
+        // It's just text, add to text buffer
+        currentText += word + " ";
+      }
+    }
+
+    purgeTextBuffer();
+
+    return tokens;
+  }
+
   addRandomChatMessage = () => {
     const username = usernames[Math.floor(Math.random() * usernames.length)];
+
+    const words = [];
+    for (let i = 0; i < Math.random() * 20; i++) {
+      if (Math.random() > 0.8) {
+        words.push(emoteNames[Math.floor(Math.random() * emoteNames.length)]);
+      } else {
+        words.push(this.state.sampleWords[Math.floor(Math.random() * this.state.sampleWords.length)]);
+      }
+    }
 
     const message = {
       username: username,
       color: generateColorFromString(username),
-      content: Math.floor(Math.random() * 1000)
+      content: JSON.stringify(this.tokenize(words.join(" ")))
     };
+
+    console.log(message);
 
     if (username.toLowerCase().indexOf("ttd") !== -1) {
       message.color = "#7b5804";
-      message.username = "💩" + message.username;
+      message.username = "💩 " + message.username;
     }
 
     let currMessages = this.state.messages;
