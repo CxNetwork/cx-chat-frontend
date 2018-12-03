@@ -131,3 +131,13 @@
   max-height: 32px;
   margin: -.5rem 0;
 }
+
+.emote-modifier {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.emote-stacked-container {
+  position: relative;
+}

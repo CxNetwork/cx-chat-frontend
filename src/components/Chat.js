@@ -38,7 +38,7 @@ const emotes = {
 const emoteNames = Object.keys(emotes);
 
 const modifiers = {
-  "stab": {},
+  "stab": { img: "https://cdn.frankerfacez.com/emoticon/59847/2" },
 };
 const modifierNames = Object.keys(modifiers);
 
@@ -50,7 +50,7 @@ class Chat extends Component {
     sampleWords: [],
 
     emotes,
-    modifiers: {}
+    modifiers
   }
 
   setEmoteMenuVisible(visible) {
@@ -119,8 +119,14 @@ class Chat extends Component {
 
     const words = [];
     for (let i = 0; i < Math.random() * 20; i++) {
+      const modifiers = [];
+
+      if (Math.random() > 0.9) {
+        modifiers.push("stab");
+      }
+
       if (Math.random() > 0.8) {
-        words.push(emoteNames[Math.floor(Math.random() * emoteNames.length)]);
+        words.push(`${emoteNames[Math.floor(Math.random() * emoteNames.length)]}${modifiers.length > 0 ? ':' : ''}${modifiers.join(':')}`);
       } else {
         words.push(this.state.sampleWords[Math.floor(Math.random() * this.state.sampleWords.length)]);
       }
@@ -165,7 +171,9 @@ class Chat extends Component {
 
         {/* Chat Area */}
         <div>
-          <ChatList messages={this.state.messages} emotes={this.state.emotes} />
+          <ChatList messages={this.state.messages}
+            emotes={this.state.emotes}
+            modifiers={this.state.modifiers} />
           {this.state.emoteMenuVisible ?
             <EmoteMenu onClose={() => this.setEmoteMenuVisible(false)}/> :
             null
