@@ -32,15 +32,23 @@ class Footer extends Component {
               <EmoteIcon color={this.props.emoteMenuVisible ? '#FFFFFF' : '#707070'}/>
             </button>
           </div>
-          <div className="chatUserDisplay">
-            <p style={{ color: "#ED0000", fontFamily: "Open Sans", margin: 0 }}>
-              Phineas
-            </p>
-            <img
-              style={{ width: 18, marginLeft: 5 }}
-              alt="Admin"
-              src={adminBadge}
-            />
+          
+          <div className="chatExperience">
+            <div className="optionButtons">
+              <img className="optionButton" alt="Settings" src={settingsIcon}/>
+              <img className="optionButton" alt="Viewer List" src={peopleIcon}/>
+            </div>
+            
+            <div className="chatUserDisplay">
+              <p style={{ color: "#ED0000", fontFamily: "Open Sans", margin: 0 }}>
+                Phineas
+              </p>
+              <img
+                style={{ width: 18, marginLeft: 5 }}
+                alt="Admin"
+                src={adminBadge}
+              />
+            </div>
           </div>
         </div>
       </Fragment>
