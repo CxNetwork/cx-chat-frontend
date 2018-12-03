@@ -31,10 +31,9 @@ function generateColorFromString(str) {
 }
 
 const emotes = {
-  "TriHard": { img: "" },
-  "Kappa": { img: "" },
-  "PogChamp": { img: "" },
-  "POGGERS": { img: "" },
+  "TriHard": { img: "https://static-cdn.jtvnw.net/emoticons/v1/120232/2.0" },
+  "Kappa": { img: "https://static-cdn.jtvnw.net/emoticons/v1/25/2.0" },
+  "PogChamp": { img: "https://static-cdn.jtvnw.net/emoticons/v1/88/2.0" },
 };
 const emoteNames = Object.keys(emotes);
 
@@ -49,6 +48,9 @@ class Chat extends Component {
     messages: [],
     maxMessages: 100,
     sampleWords: [],
+
+    emotes,
+    modifiers: {}
   }
 
   setEmoteMenuVisible(visible) {
@@ -74,9 +76,9 @@ class Chat extends Component {
 
     const purgeTextBuffer = () => {
       if (currentText.length === 0) return;
-      
+
       // Save current text onto token list and clear buffer
-      tokens.push({ type: "TEXT", value: currentText.trim() });
+      tokens.push({ type: "TEXT", value: currentText });
       currentText = "";
     }
 
@@ -92,9 +94,12 @@ class Chat extends Component {
       }
 
       if (emoteNames.indexOf(emote) > -1) {
+        // Purge any text in the buffer before writing emote
         purgeTextBuffer();
+        currentText = " ";
 
-        const validModifiers = modifiers.split(':').filter(x => modifierNames.indexOf(x) > -1);
+        // Take our modifiers, validate them against the list and take max 4
+        const validModifiers = modifiers.split(':').filter(x => modifierNames.indexOf(x) > -1).slice(0, 4);
 
         // Put emote onto token list
         tokens.push({ type: "EMOTE", name: emote, modifiers: validModifiers });
@@ -124,7 +129,7 @@ class Chat extends Component {
     const message = {
       username: username,
       color: generateColorFromString(username),
-      content: JSON.stringify(this.tokenize(words.join(" ")))
+      content: this.tokenize(words.join(" "))
     };
 
     console.log(message);
@@ -158,9 +163,9 @@ class Chat extends Component {
           />
         </div>
 
-        {/* Chat Area */}    
+        {/* Chat Area */}
         <div>
-          <ChatList messages={this.state.messages} />
+          <ChatList messages={this.state.messages} emotes={this.state.emotes} />
           {this.state.emoteMenuVisible ?
             <EmoteMenu onClose={() => this.setEmoteMenuVisible(false)}/> :
             null

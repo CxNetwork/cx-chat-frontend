@@ -120,9 +120,14 @@
   justify-content: flex-end;
   align-content: flex-start;
   align-items: stretch;
-  font-family: ;
 }
 
 .chat-list-item {
   padding-bottom: 10px;
+}
+
+.emote {
+  vertical-align: middle;
+  max-height: 32px;
+  margin: -.5rem 0;
 }
