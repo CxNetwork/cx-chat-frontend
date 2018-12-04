@@ -3,6 +3,7 @@
 }
 
 .header {
+  z-index: 1000;
   height: 55px;
   width: 100%;
   top: 0;
@@ -112,8 +113,11 @@
 /* The container for the Chat Message items */
 .chat-flex-container {
   width: 100vw;
+  max-width:100%;
+  height: calc(100vh - 175px);
   margin-left: 28px;
-  margin-top: 5px;
+  margin-top: 55px;
+  margin-bottom: 120px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
