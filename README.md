@@ -3,7 +3,6 @@ This was our frontend react app for the Cx chat on chat.iceposeidon.com - we're 
 
 ## Built by...
 Ciaran (chat rendering, tokenization, autocomplete, emote menu)  
-Magnaboy (ux features, client-side punishment system, badges, client-side filter)  
 Phineas (backend, chat socket, api, authentication, ui design)  
 segfault (user settings panel, mod/admin panel, help with chat rendering and name colors)  
 
