@@ -1,0 +1,36 @@
+.generic-modal {
+	z-index: 99999;
+	color: white;
+	position: absolute;
+	top: 90px;
+	left: 20%;
+	right: 20%;
+	bottom: 90px;
+	background-color: #181818;
+	padding: 40px;
+	border-radius: 6px;
+}
+
+.modal-overlay {
+	z-index: 99999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color:rgba(0, 0, 0, 0.8);
+}
+
+
+.ReactModal__Overlay {
+	opacity: 0;
+	transition: opacity 300ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+	opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+	opacity: 0;
+}

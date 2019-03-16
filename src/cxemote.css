@@ -1,0 +1,32 @@
+.emoteMenuRoot {
+  position: absolute;
+  bottom: 125px;
+  right: 5px;
+  max-width: 400px;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.emoji-mart {
+  border: 1px solid #181818;
+  background: #272727;
+  color: #d2d2d2;
+}
+
+.emoji-mart-category-label span {
+  background-color: #272727;
+}
+
+.emoji-mart-search input {
+  background: #181818;
+  border: 1px solid #181818;
+  color: #d2d2d2;
+}
+
+.emoji-mart-category .emoji-mart-emoji:hover:before {
+  background-color: #181818;
+}
+
+.emoji-mart-emoji {
+  background-repeat: no-repeat;
+}
